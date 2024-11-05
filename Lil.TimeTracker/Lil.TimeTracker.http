@@ -1,0 +1,6 @@
+@Lil.TimeTracker_HostAddress = https://localhost:7226
+
+GET {{Lil.TimeTracker_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

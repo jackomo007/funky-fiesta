@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Lil.TimeTracker.props" />
+</Project>
