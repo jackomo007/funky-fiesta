@@ -1,5 +1,10 @@
+using Lil.TimeTracker.Models;
+using Mapster;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Lil.TimeTracker.Controllers
 {
@@ -7,36 +12,136 @@ namespace Lil.TimeTracker.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
+        private TimeTrackerDbContext ctx;
+
+        public EmployeeController(TimeTrackerDbContext context)
+        {
+            ctx = context;
+        }
+
         // GET: api/<EmployeeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [ProducesResponseType<IEnumerable<Resources.Employee>>(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            //TODO: add paging support
+            var response = ctx.Employees.ProjectToType<Resources.Employee>().AsEnumerable();
+            return Ok(response);
         }
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        [ProducesResponseType<IEnumerable<Resources.Employee>>(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var dbEmployee = await ctx.Employees.FindAsync(id);
+
+            if (dbEmployee == null)
+            {
+                return NotFound();
+            }
+
+            var response = dbEmployee.Adapt<Resources.Employee>();
+            return Ok(response);
         }
 
         // POST api/<EmployeeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ProducesResponseType<IEnumerable<Resources.Employee>>(StatusCodes.Status201Created)]
+        [ProducesResponseType<IEnumerable<ObjectResult>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<ObjectResult>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Post([FromBody] Resources.Employee value)
         {
+            if (!ModelState.IsValid)
+            {
+                return Problem("Invalid employee request", statusCode: StatusCodes.Status400BadRequest);
+            }
+
+            try
+            {
+                var dbEmployee = value.Adapt<Models.Employee>();
+
+                await ctx.Employees.AddAsync(dbEmployee);
+                await ctx.SaveChangesAsync();
+
+                var response = dbEmployee?.Adapt<Resources.Employee>();
+
+                return CreatedAtAction(nameof(Get), new { id = response.Id }, response);
+            }
+            catch (Exception ex)
+            {
+
+                return Problem("Problem persisting employee resource", statusCode: StatusCodes.Status500InternalServerError);
+
+            }
         }
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType<IEnumerable<Resources.Employee>>(StatusCodes.Status201Created)]
+        [ProducesResponseType<IEnumerable<ObjectResult>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<ObjectResult>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Put(int id, [FromBody] Resources.Employee value)
         {
+            if (!ModelState.IsValid){
+                return Problem("Invalid employee request", statusCode: StatusCodes.Status400BadRequest);
+            }
+
+            try
+            {
+                var dbEmployee = value.Adapt<Models.Employee>();
+
+                ctx.Entry<Models.Employee>(dbEmployee).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                
+                await ctx.SaveChangesAsync();
+                
+                return NoContent();
+            }
+            catch (DbUpdateConcurrencyException dbex)
+            {
+                var dbEmployee = ctx.Employees.Find(id);
+                if (dbEmployee == null)
+                {
+                    return NotFound();
+                } else {
+                    return Problem("Problem persisting employee resource", statusCode: StatusCodes.Status500InternalServerError);
+                }
+            }
+            catch (Exception ex){
+
+                return Problem("Problem persisting employee resource", statusCode: StatusCodes.Status500InternalServerError);
+
+            }
         }
+
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType<IEnumerable<Resources.Employee>>(StatusCodes.Status204NoContent)]
+        [ProducesResponseType<IEnumerable<ObjectResult>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(int id)
         {
+                try
+                {
+                    var dbEmployee = await ctx.Employees.FindAsync(id);
+                    if (dbEmployee == null)
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        ctx.Employees.Remove(dbEmployee);
+                        await ctx.SaveChangesAsync();
+                        return NoContent();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return Problem("Problem deleting employee resource", statusCode: StatusCodes.Status500InternalServerError);
+                }
         }
     }
 }

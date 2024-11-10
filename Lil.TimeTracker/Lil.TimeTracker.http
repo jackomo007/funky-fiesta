@@ -4,3 +4,126 @@ GET {{Lil.TimeTracker_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+GET {{Lil.TimeTracker_HostAddress}}/api/Employee
+Accept: application/json
+
+###
+
+GET {{Lil.TimeTracker_HostAddress}}/api/Employee/1
+Accept: application/json
+
+###
+
+POST {{Lil.TimeTracker_HostAddress}}/api/Employee
+Content-Type: application/json
+
+{
+    "name": "Fiore",
+    "startDate": "2024-11-10"
+}
+
+###
+
+PUT {{Lil.TimeTracker_HostAddress}}/api/Employee/2
+Content-Type: application/json
+
+{
+    "id":"2",
+    "name": "Fiore (Updated)",
+    "startDate": "2024-11-10"
+}
+
+###
+
+DELETE  {{Lil.TimeTracker_HostAddress}}/api/Employee/2
+Content-Type: application/json
+
+###
+
+#Project Requests
+GET {{LiL.TimeTracker_HostAddress}}/api/Project
+Accept: application/json
+
+###
+
+GET {{LiL.TimeTracker_HostAddress}}/api/Project/1
+Accept: application/json
+
+###
+
+POST {{LiL.TimeTracker_HostAddress}}/api/Project
+Accept: application/json 
+Content-Type: application/json
+
+{
+    "Name":"Big Project",
+    "StartDate": "2023-08-01"
+}
+###
+
+POST {{LiL.TimeTracker_HostAddress}}/api/Project
+Accept: application/json 
+Content-Type: application/json
+
+{
+    "Name":"Small Project",
+    "StartDate": "2024-01-01",
+    "EndDate":"2024-06-01"
+}
+###
+
+PUT {{LiL.TimeTracker_HostAddress}}/api/Project/2
+Accept: application/json 
+Content-Type: application/json
+
+{
+    "Id":2,
+    "Name":"Small Project",
+    "StartDate": "2024-01-01",
+    "EndDate":"2024-05-01"
+}
+###
+
+DELETE {{LiL.TimeTracker_HostAddress}}/api/Project/2
+
+###
+
+
+
+
+# Project Assignment Requests
+
+POST {{LiL.TimeTracker_HostAddress}}/api/ProjectAssignment
+Content-Type:application/json
+
+{
+    "EmployeeId":1,
+    "ProjectId": 1
+}
+
+###
+
+GET {{LiL.TimeTracker_HostAddress}}/api/ProjectAssignment
+Accept: application/json
+
+###
+
+# Time Entry Requests
+
+POST {{LiL.TimeTracker_HostAddress}}/api/TimeEntry
+Content-Type: application/json
+
+{
+    "EmployeeId":1,
+    "ProjectId":1,
+    "DateWorked":"2024-03-02",
+    "HoursWorked":7.75
+}
+
+###
+
+GET {{LiL.TimeTracker_HostAddress}}/api/TimeEntry
+Accept: application/json
+
+###

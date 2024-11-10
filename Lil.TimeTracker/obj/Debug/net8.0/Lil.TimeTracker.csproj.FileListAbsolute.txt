@@ -260,3 +260,4 @@
 /Users/angelprieto/Documents/Projects/API/Lil.TimeTracker/obj/Debug/net8.0/ref/Lil.TimeTracker.dll
 /Users/angelprieto/Documents/Projects/API/Lil.TimeTracker/bin/Debug/net8.0/Mapster.dll
 /Users/angelprieto/Documents/Projects/API/Lil.TimeTracker/bin/Debug/net8.0/Mapster.Core.dll
+/Users/angelprieto/Documents/Projects/API/Lil.TimeTracker/obj/Debug/net8.0/Lil.TimeTracker.sourcelink.json
