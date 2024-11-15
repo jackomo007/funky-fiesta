@@ -26,7 +26,16 @@ namespace Lil.TimeTracker.Controllers
         {
             //TODO: add paging support
             var response = ctx.Employees.ProjectToType<Resources.Employee>().AsEnumerable();
-            return Ok(response);
+
+            var lEmployee = new List<Resources.LinkedResource<Resources.Employee>>();
+            foreach (var e in response)
+            {
+                var lEmp = new Resources.LinkedResource<Resources.Employee>(e);
+                lEmp.Links.Add(new Resources.Resource("Projects", "/api/Employee/" + e.Id.ToString() + "/Projects"));
+                lEmployee.Add(lEmp);
+            }
+
+            return Ok(lEmployee);
         }
 
         // GET api/<EmployeeController>/5
@@ -43,7 +52,35 @@ namespace Lil.TimeTracker.Controllers
             }
 
             var response = dbEmployee.Adapt<Resources.Employee>();
-            return Ok(response);
+            var lEmployee = new Resources.LinkedResource<Resources.Employee>(response);
+            lEmployee.Links.Add(new Resources.Resource("Projects", "/api/Employee/" + response.Id.ToString() + "/Projects"));
+            
+            return Ok(lEmployee);
+        }
+
+         // GET api/<EmployeeController>/5/Projects
+        [HttpGet("{id}/Projects")]
+        [ProducesResponseType<IEnumerable<Resources.Project>>(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetProjects(int id)
+        {
+            var dbEmployee = await ctx.Employees.FindAsync(id);
+
+            if (dbEmployee == null)
+            {
+                return NotFound();
+            }
+            else {
+                await ctx.Entry(dbEmployee).Collection(e => e.Projects).LoadAsync();
+                var projects = new List<Resources.Project>();
+                foreach (var p in dbEmployee.Projects)
+                {
+                    projects.Add(p.Adapt<Resources.Project>());
+                }
+               
+                return Ok(projects);
+            }
+
         }
 
         // POST api/<EmployeeController>

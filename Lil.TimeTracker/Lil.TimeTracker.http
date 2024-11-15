@@ -5,54 +5,68 @@ Accept: application/json
 
 ###
 
+# Employee Requests
+
 GET {{Lil.TimeTracker_HostAddress}}/api/Employee
-Accept: application/json
+Accept: application/json 
 
 ###
 
 GET {{Lil.TimeTracker_HostAddress}}/api/Employee/1
-Accept: application/json
+Accept: application/json 
 
 ###
 
 POST {{Lil.TimeTracker_HostAddress}}/api/Employee
-Content-Type: application/json
+Content-Type:application/json 
 
 {
-    "name": "Fiore",
-    "startDate": "2024-11-10"
+    "Name":"Employee 3",
+    "StartDate": "2019-02-02"
 }
 
 ###
 
 PUT {{Lil.TimeTracker_HostAddress}}/api/Employee/2
-Content-Type: application/json
+Content-Type:application/json 
 
 {
-    "id":"2",
-    "name": "Fiore (Updated)",
-    "startDate": "2024-11-10"
+    "Id":2,
+    "Name":"Employee 2 (updated)",
+    "StartDate": "2020-04-12"
 }
 
 ###
 
-DELETE  {{Lil.TimeTracker_HostAddress}}/api/Employee/2
-Content-Type: application/json
+PATCH {{Lil.TimeTracker_HostAddress}}/api/Employee/2
+Content-Type:application/json 
+
+[
+    {
+        "op":"add",
+        "path":"/name",
+        "value":"Employee 2 (patched)"
+    }
+]
+
+###
+
+DELETE {{Lil.TimeTracker_HostAddress}}/api/Employee/3
 
 ###
 
 #Project Requests
-GET {{LiL.TimeTracker_HostAddress}}/api/Project
+GET {{Lil.TimeTracker_HostAddress}}/api/Project
 Accept: application/json
 
 ###
 
-GET {{LiL.TimeTracker_HostAddress}}/api/Project/1
+GET {{Lil.TimeTracker_HostAddress}}/api/Project/1
 Accept: application/json
 
 ###
 
-POST {{LiL.TimeTracker_HostAddress}}/api/Project
+POST {{Lil.TimeTracker_HostAddress}}/api/Project
 Accept: application/json 
 Content-Type: application/json
 
@@ -62,7 +76,7 @@ Content-Type: application/json
 }
 ###
 
-POST {{LiL.TimeTracker_HostAddress}}/api/Project
+POST {{Lil.TimeTracker_HostAddress}}/api/Project
 Accept: application/json 
 Content-Type: application/json
 
@@ -73,7 +87,7 @@ Content-Type: application/json
 }
 ###
 
-PUT {{LiL.TimeTracker_HostAddress}}/api/Project/2
+PUT {{Lil.TimeTracker_HostAddress}}/api/Project/2
 Accept: application/json 
 Content-Type: application/json
 
@@ -85,16 +99,14 @@ Content-Type: application/json
 }
 ###
 
-DELETE {{LiL.TimeTracker_HostAddress}}/api/Project/2
+DELETE {{Lil.TimeTracker_HostAddress}}/api/Project/2
 
 ###
 
 
-
-
 # Project Assignment Requests
 
-POST {{LiL.TimeTracker_HostAddress}}/api/ProjectAssignment
+POST {{Lil.TimeTracker_HostAddress}}/api/ProjectAssignment
 Content-Type:application/json
 
 {
@@ -104,14 +116,14 @@ Content-Type:application/json
 
 ###
 
-GET {{LiL.TimeTracker_HostAddress}}/api/ProjectAssignment
+GET {{Lil.TimeTracker_HostAddress}}/api/ProjectAssignment
 Accept: application/json
 
 ###
 
 # Time Entry Requests
 
-POST {{LiL.TimeTracker_HostAddress}}/api/TimeEntry
+POST {{Lil.TimeTracker_HostAddress}}/api/TimeEntry
 Content-Type: application/json
 
 {
@@ -123,7 +135,7 @@ Content-Type: application/json
 
 ###
 
-GET {{LiL.TimeTracker_HostAddress}}/api/TimeEntry
+GET {{Lil.TimeTracker_HostAddress}}/api/TimeEntry
 Accept: application/json
 
 ###
