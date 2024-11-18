@@ -1,4 +1,6 @@
+using Lil.TimeTracker.Auth;
 using Lil.TimeTracker.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,9 +12,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAuthentication().AddScheme<APIKeyOptions, APIKeyAuthHandler>("APIKEY", o =>o.DisplayMessage = "API Key Authenticator");
 builder.Services.AddDbContext<TimeTrackerDbContext>(options=>
     options.UseSqlite(builder.Configuration.GetConnectionString("TrackerDbContext"))
 );
+builder.Services.AddIdentityApiEndpoints<IdentityUser>().AddEntityFrameworkStores<TimeTrackerDbContext>();
 
 var app = builder.Build();
 
@@ -28,5 +32,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGroup("identity").MapIdentityApi<IdentityUser>();
 
 app.Run();
