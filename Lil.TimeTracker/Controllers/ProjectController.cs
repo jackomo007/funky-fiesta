@@ -1,5 +1,6 @@
 using Lil.TimeTracker.Models;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -101,6 +102,7 @@ namespace Lil.TimeTracker.Controllers
 
         // DELETE api/<ProjectController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType<Resources.Project>(StatusCodes.Status204NoContent)]
         [ProducesResponseType<ObjectResult>(StatusCodes.Status500InternalServerError)]

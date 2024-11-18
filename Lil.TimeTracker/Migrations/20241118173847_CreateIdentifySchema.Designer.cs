@@ -3,6 +3,7 @@ using System;
 using Lil.TimeTracker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lil.TimeTracker.Migrations
 {
     [DbContext(typeof(TimeTrackerDbContext))]
-    partial class TimeTrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241118173847_CreateIdentifySchema")]
+    partial class CreateIdentifySchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");

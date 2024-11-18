@@ -9,6 +9,8 @@
       "Lil.TimeTracker/1.0.0": {
         "dependencies": {
           "Mapster": "7.4.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.0-preview.7.23375.9",
+          "Microsoft.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore.Design": "8.0.10",
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.10",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.10",
@@ -575,6 +577,24 @@
           "lib/net7.0/Mapster.Core.dll": {
             "assemblyVersion": "1.2.1.0",
             "fileVersion": "1.2.1.0"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Cryptography.Internal/8.0.0-preview.7.23375.9": {},
+      "Microsoft.AspNetCore.Cryptography.KeyDerivation/8.0.0-preview.7.23375.9": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Cryptography.Internal": "8.0.0-preview.7.23375.9"
+        }
+      },
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/8.0.0-preview.7.23375.9": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.10",
+          "Microsoft.Extensions.Identity.Stores": "8.0.0-preview.7.23375.9"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.37509"
           }
         }
       },
@@ -1201,6 +1221,20 @@
             "assemblyVersion": "8.0.0.2",
             "fileVersion": "8.0.1024.46610"
           }
+        }
+      },
+      "Microsoft.Extensions.Identity.Core/8.0.0-preview.7.23375.9": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "8.0.0-preview.7.23375.9",
+          "Microsoft.Extensions.Logging": "8.0.1",
+          "Microsoft.Extensions.Options": "8.0.2"
+        }
+      },
+      "Microsoft.Extensions.Identity.Stores/8.0.0-preview.7.23375.9": {
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Identity.Core": "8.0.0-preview.7.23375.9",
+          "Microsoft.Extensions.Logging": "8.0.1"
         }
       },
       "Microsoft.Extensions.Logging/8.0.1": {
@@ -2212,6 +2246,27 @@
       "path": "mapster.core/1.2.1",
       "hashPath": "mapster.core.1.2.1.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Cryptography.Internal/8.0.0-preview.7.23375.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tsbkgwLreVTTHkisiF1mGzCAZEG0XDFoKkuyffwgdK22ghPiUsL55PkZiMZEr2S2IF2I0u7IhDofArqFUaSvBg==",
+      "path": "microsoft.aspnetcore.cryptography.internal/8.0.0-preview.7.23375.9",
+      "hashPath": "microsoft.aspnetcore.cryptography.internal.8.0.0-preview.7.23375.9.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation/8.0.0-preview.7.23375.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-y8paUdLQuQ0cqT505rKYPk7duWhM6di51DvSRJXKnOnb2dDpsEia3Gn1ebTcHvhjcH58Ks0DXmCBsL8H7e48AQ==",
+      "path": "microsoft.aspnetcore.cryptography.keyderivation/8.0.0-preview.7.23375.9",
+      "hashPath": "microsoft.aspnetcore.cryptography.keyderivation.8.0.0-preview.7.23375.9.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/8.0.0-preview.7.23375.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m6ea95C3jk4Mi4u4rW4v/lGQmn9scR29xbl92QqRYDz2dPUwInIWwBD7cKh+BvHln+SnzUmBLP5/B0Jft+X51A==",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/8.0.0-preview.7.23375.9",
+      "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.8.0.0-preview.7.23375.9.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Razor.Language/6.0.24": {
       "type": "package",
       "serviceable": true,
@@ -2442,6 +2497,20 @@
       "sha512": "sha512-mUBDZZRgZrSyFOsJ2qJJ9fXfqd/kXJwf3AiDoqLD9m6TjY5OO/vLNOb9fb4juC0487eq4hcGN/M2Rh/CKS7QYw==",
       "path": "microsoft.extensions.dependencymodel/8.0.2",
       "hashPath": "microsoft.extensions.dependencymodel.8.0.2.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Identity.Core/8.0.0-preview.7.23375.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2icOstnUNmqyd6sXslVnIIQaG2G+MgEt1dh9HZyOLgqjbCdX9/HqjwsutsPd7yroQlo4O4xYat0E57b4g3A07w==",
+      "path": "microsoft.extensions.identity.core/8.0.0-preview.7.23375.9",
+      "hashPath": "microsoft.extensions.identity.core.8.0.0-preview.7.23375.9.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Identity.Stores/8.0.0-preview.7.23375.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IIjvXxVCc4kVL2sqi+Kc/oak4EdUh7rOWCv0jegxW9HgLNHn/Zi3TOiNoYvxLtMSzvroFKHzWPThIHy7vwFxAw==",
+      "path": "microsoft.extensions.identity.stores/8.0.0-preview.7.23375.9",
+      "hashPath": "microsoft.extensions.identity.stores.8.0.0-preview.7.23375.9.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging/8.0.1": {
       "type": "package",

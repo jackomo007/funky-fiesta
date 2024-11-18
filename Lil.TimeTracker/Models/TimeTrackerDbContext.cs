@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lil.TimeTracker.Models;
 
-public class TimeTrackerDbContext: DbContext
+public class TimeTrackerDbContext: IdentityDbContext<IdentityUser>
 {
     public TimeTrackerDbContext()
     {
