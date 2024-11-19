@@ -1,6 +1,6 @@
 @Lil.TimeTracker_HostAddress = https://localhost:7226
 
-@AcessToken=CfDJ8PnSz0LdR2xDqa29P4MGHIOfY_RlLxZIDneSgryqr0cb4RE7nOzW3Sstm40wfcInhA6PfoafmqiJVCWSQnRKgXawtahCl5twun_623np6wj81Bvu3Au4I02tlIyqjI9mynOI58i5rKjexhQPd_J90YqW76EM51egdexrE-GQK3WKRyDc00NbHqXhx0SovNoQMF5BBw_HJSPJUSt4GhtuTDD5dsJhmVNJzA5RmMoOp4ZxgtKCtDrVSh94fetaSSnjQzQPbbo_4klMEEbcEYqQXONlezFKaQklOUjN_YPWzmtJ3O4RkvtG8G57hFVk_RN4i9nf9lm0tCAkMiuNAtM5Xe_fkIVDcqHfMNPTu_Fs5Wi9p-bvbNSp0upWU0nOHhbRx_WS_d1-JSGh4ruIi02OdOSiz8Q9NUQls4_z-eaCZIgKkB3_QdNO2KeHsDbSOgrZDvjYMsB4GiMehj7Dvm_1m2BdXUReUjywvnv22fWICOBqYBgjxRCxTNb8WOVLcmLj2brYlc6rj0yOMjUvD0ZOt4J7emn4BiY9WJCXSk0d4dLYSfSHpKGvTakHM7p47fqLsnl5L25Kw4h3kWuVZzTH7rA_tG6izPhPNxZyKu5sMoLdHe2sPT0fjbBxADzxHDwN-GqVFgO2dPT40E4szBbfNggl6REv3REcieB67SscBtwLocX9woq4AmoVoNTkDjielw
+@AcessToken=CfDJ8PnSz0LdR2xDqa29P4MGHIP3VPtUkkisWWCM3DPlIpu1yZ3trc06huVjka9ks2_glIFCe92iDcK111dEvXw1eLWgNuByper1G56-E03Ll4RGO1XJbSjQSjdk0fXTYUrpwqOjDWIUKYJ4Bj5UCzIEbfQSwUQPWztj1LXLUW8aEiSfTbz-n0k6c6sO6RwsCi5GuHQ0MXXeeB8bA9JokhO2uordtN4jrWGopcP-6yClZHq_pMsNhwH6wJTas_0C2NhNYwjAEegKaUe3rmk-bDk_yNNZAbn_09ZJOflQuC0OIcYNJmYCONV_xdUGTo-yGmDzWnNtEiCgUkMHkeNcJrUeFsNtd9wvNP-6ZmJglnsyuVLXbmMMHqScM2EF_gAkW_jQsXn-_e1KlJiAt0EWfAylBzfG75QtcFzZQ8I0LL6dic_BJN_dzuuq0B48ei3hG7VdTUdJ4mV0D4HZ0P2qy7QlXIKlz9yniBLSvUZKE7n3QfnKy973GhR35jQboEec2fRcdPLiIZo7p0JVlrP48UenZqzZeeqxxhqPhI8MSu4pVob0dacMDW9EC7cyr6_evbJ94-ZWbQ64-Q3-UoFk0elGg4nOny3yC3vh3dCppjtEzAb-LHeTCAVv1rB4jDllRqS4KyKI4vzlBAaTD5vhF37S2dPLtvkRGhm7joWjc6eU3a4Kusk5PmxqC0rn4tL6llz2Vw
 
 POST {{Lil.TimeTracker_HostAddress}}/identity/register
 Content-Type: application/json
@@ -24,4 +24,25 @@ Content-Type: application/json
 
 GET {{Lil.TimeTracker_HostAddress}}/api/Employee
 Authorization: Bearer {{AcessToken}}
+
+###
+
+POST {{Lil.TimeTracker_HostAddress}}/identity/register
+Content-Type: application/json
+
+{
+    "email": "angel@control.com",
+    "password": "@Password123"
+}
+
+###
+
+POST {{Lil.TimeTracker_HostAddress}}/identity/login
+Content-Type: application/json
+
+{
+    "email": "angel@control.com",
+    "password": "@Password123"
+}
+
 ###

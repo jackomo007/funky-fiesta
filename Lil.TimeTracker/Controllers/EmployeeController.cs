@@ -11,7 +11,7 @@ namespace Lil.TimeTracker.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(policy: "EmailDomain")]
     public class EmployeeController : ControllerBase
     {
         private TimeTrackerDbContext ctx;
